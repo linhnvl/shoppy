@@ -8,6 +8,13 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.6.3-stretch
+        environment:
+          RAILS_ENV: test
+          DATABASE_HOSTNAME: 127.0.0.1
+          DATABASE_USERNAME: 'root'
+          DATABASE_PASSWORD: ''
+          DATABASE_PORT: 3306
+      - image: circleci/mysql:5.7.26
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -35,10 +42,18 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:      
+          name: Wait for MySQL
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
 
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
+
+      # Check code-style
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
 
       # run tests!
       - run:
