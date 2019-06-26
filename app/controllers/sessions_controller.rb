@@ -1,9 +1,8 @@
-class AuthenticationController < ApplicationController
+class SessionsController < ApplicationController
   before_action :load_user, only: :login
 
-  # POST /auth/login
   def login
-    @exp = params[:remember_me] == "true" ? 14.days.from_now : 24.hours.from_now
+    @exp = params[:remember_me] == "true" ? Settings.exp.remember : Settings.exp.no_remember
     if @user&.authenticate(params[:password])
       token = JsonWebToken.encode({user_id: @user.id}, @exp)
       render json: {token: token, exp: @exp.strftime("%m-%d-%y %H:%M%p GMT%:z"),
@@ -14,7 +13,6 @@ class AuthenticationController < ApplicationController
   end
 
   private
-
   def load_user
     return @user = Admin.find_by(email: params[:email]) if params[:admin] == "true"
 
