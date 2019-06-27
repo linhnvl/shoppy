@@ -3,13 +3,10 @@ class SessionsController < ApplicationController
   before_action :load_user, only: :create
 
   def create
-    exp = params[:remember_me] == "true" ? Settings.exp.remember : Settings.exp.no_remember
     if @user&.authenticate params[:password]
-      token = JsonWebToken.encode({user_id: @user.id}, exp)
-      data = UserSerializer.new(@user, params: {token: token}).serializable_hash
-      render json: data
+      render_authenticated @user
     else
-      render_unauthorize_error
+      render_unauthenticated_error
     end
   end
 

@@ -3,13 +3,10 @@ class Admin::SessionsController < ApplicationController
   before_action :load_admin, only: :create
 
   def create
-    exp = params[:remember_me] == "true" ? Settings.exp.remember : Settings.exp.no_remember
     if @admin&.authenticate params[:password]
-      token = JsonWebToken.encode({user_id: @admin.id}, exp)
-      data = AdminSerializer.new(@admin, params: {token: token}).serializable_hash
-      render json: data
+      render_authenticated @admin, @admin.role
     else
-      render_unauthorize_error
+      render_unauthenticated_error
     end
   end
 
