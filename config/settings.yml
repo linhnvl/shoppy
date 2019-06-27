@@ -1,4 +1,4 @@
 VALID_EMAIL_REGEX: !ruby/regexp '/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i'
 exp:
-  no_remember: 24.hours.from_now
-  remember: 14.days.from_now
+  no_remember: <%= 24.hours.from_now %>
+  remember: <%= 14.days.from_now %>

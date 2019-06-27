@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  post "/login", to: "sessions#login"
+  namespace :admin do
+    post "/login", to: "sessions#create"
+  end
+  
+  post "/login", to: "sessions#create"
 end
