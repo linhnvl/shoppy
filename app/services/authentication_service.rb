@@ -6,9 +6,9 @@ class AuthenticationService < ApplicationService
   end
 
   def call
-    raise Error::AuthenticationError unless @authenticable&.authenticate @password
+    raise Modules::AuthenticationError unless @authenticable&.authenticate @password
 
-    exp = @remember_me ? Settings.exp.remember : Settings.exp.no_remember
+    exp = @remember_me ? 14.days.from_now : 24.hours.from_now
     token = JsonWebToken.encode({user_id: @authenticable.id}, exp)
     if @authenticable.is_a? User
       UserSerializer.new(@authenticable, params: {token: token}).serializable_hash

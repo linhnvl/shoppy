@@ -1,4 +1,4 @@
-module Error
+module Modules
   module ErrorHandler
     def self.included clazz
       clazz.class_eval do

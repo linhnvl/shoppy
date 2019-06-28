@@ -3,7 +3,7 @@ namespace :user do
   task create: :environment do
     Admin.create(
       name: "Admin",
-      email: "luat@gmail.com",
+      email: "admin@gmail.com",
       password: "Abcd1234",
       role: 0
     )
@@ -12,7 +12,6 @@ namespace :user do
       name: "Luat",
       email: "luat@gmail.com",
       password: "Abcd1234"
-    )    
+    ) 
   end
-
 end

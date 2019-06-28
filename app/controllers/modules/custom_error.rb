@@ -1,4 +1,4 @@
-module Error
+module Modules
   class CustomError < StandardError
     attr_reader :status, :message
 
