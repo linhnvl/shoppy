@@ -6,16 +6,14 @@ class AuthenticationService < ApplicationService
   end
 
   def call
-    if @authenticable
-      exp = @remember_me ? Settings.exp.remember : Settings.exp.no_remember
-      token = JsonWebToken.encode({user_id: @authenticable.id}, exp)
-      if @authenticable.is_a? User
-        UserSerializer.new(@authenticable, params: {token: token}).serializable_hash
-      else
-        AdminSerializer.new(@authenticable, params: {token: token}).serializable_hash
-      end
+    raise Error::AuthenticationError unless @authenticable&.authenticate @password
+
+    exp = @remember_me ? Settings.exp.remember : Settings.exp.no_remember
+    token = JsonWebToken.encode({user_id: @authenticable.id}, exp)
+    if @authenticable.is_a? User
+      UserSerializer.new(@authenticable, params: {token: token}).serializable_hash
     else
-      {message: "unauthenticated"}
+      AdminSerializer.new(@authenticable, params: {token: token}).serializable_hash
     end
   end
 end
