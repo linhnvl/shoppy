@@ -14,6 +14,7 @@
 #
 
 class Admin < ApplicationRecord
+  has_secure_password
   enum role: {system_admin: 0, shop_admin: 1}
 
   validates :name, presence: true

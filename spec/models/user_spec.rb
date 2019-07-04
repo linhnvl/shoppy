@@ -13,8 +13,6 @@ RSpec.describe User, type: :model do
     it_behaves_like :presence_of, :name
     it_behaves_like :presence_of, :email
     it_behaves_like :presence_of, :password_digest
-    it_behaves_like :presence_of, :address
-    it_behaves_like :presence_of, :phone_number
 
     it_behaves_like :allow_value, Faker::Internet.email, :email
     it_behaves_like :validate_uniqueness_of, :email
