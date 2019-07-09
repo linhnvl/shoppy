@@ -1,1 +1,5 @@
 VALID_EMAIL_REGEX: !ruby/regexp '/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i'
+json_web_token:
+  expires_in: <%= 14.days %>
+  short_expires_in: <%= 24.hours %>
+  reset_password_exp: <%= 6.hours %>

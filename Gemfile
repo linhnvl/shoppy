@@ -11,6 +11,7 @@ gem "mysql2"
 gem "puma", "~> 3.11"
 gem "rack-cors"
 gem "rails", "~> 5.2.3"
+gem "rails-i18n"
 gem "rubocop", "~> 0.71.0"
 gem "jwt"
 

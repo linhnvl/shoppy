@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 2019_06_24_055141) do
     t.string "email"
     t.integer "role"
     t.string "password_digest"
-    t.string "remember_digest"
-    t.string "reset_password_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,10 +91,8 @@ ActiveRecord::Schema.define(version: 2019_06_24_055141) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "remember_digest"
     t.string "phone_number"
     t.string "address"
-    t.string "reset_password_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

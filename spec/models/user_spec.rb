@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  subject{create :user}
+  subject{build :user}
 
   context :association do
     it_behaves_like :have_many, :orders
