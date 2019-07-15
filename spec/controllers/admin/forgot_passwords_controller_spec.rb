@@ -1,12 +1,12 @@
 require "rails_helper"
 require "helpers/valid_json_helper.rb"
 
-RSpec.describe Admin::Api::ForgotPasswordsController, type: :controller do
+RSpec.describe Api::Admin::ForgotPasswordsController, type: :controller do
   include ValidJsonHelper
-
   context "when send email success" do
-    let(:admin){create :admin}
-    subject{post :create, params: {"email": admin.email}}
+    let(:password){ "Abcd1234" }
+    let(:admin){create :admin, password: password, password_confirmation: password}
+    subject{post :create, params: {email: admin.email}}
 
     it "sends an email" do
       expect{subject}.to change{ActionMailer::Base.deliveries.size}.by(1)

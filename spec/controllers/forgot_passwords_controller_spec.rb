@@ -5,7 +5,8 @@ RSpec.describe Api::ForgotPasswordsController, type: :controller do
   include ValidJsonHelper
 
   context "when send email success" do
-    let(:user){create :user}
+    let(:password){ "Abcd1234" }
+    let(:user){create :user, password: password, password_confirmation: password}
     subject{post :create, params: {"email": user.email}}
 
     it "has 200 status code" do

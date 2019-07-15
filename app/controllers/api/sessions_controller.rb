@@ -10,8 +10,4 @@ class Api::SessionsController < ApplicationController
   def load_user
     @user = User.find_by email: params[:email]
   end
-
-  def login_params
-    params.permit :email, :password, :remember_me
-  end
 end
