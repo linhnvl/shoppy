@@ -1,8 +1,8 @@
 require "rails_helper"
-require "helpers/sessions_controller_helper.rb"
+require "helpers/valid_json_helper.rb"
 
-RSpec.describe Admin::SessionsController, type: :controller do
-  include SessionsControllerHelper
+RSpec.describe Admin::Api::SessionsController, type: :controller do
+  include ValidJsonHelper
 
   context "when login success" do
     let(:password){"Abcd1234"}

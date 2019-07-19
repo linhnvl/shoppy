@@ -11,5 +11,11 @@ class JsonWebToken
       data = JWT.decode(token, SECRET_KEY)[0]
       HashWithIndifferentAccess.new data
     end
+
+    def check_valid_token! token
+      @decode = decode token
+    rescue JWT::DecodeError
+      raise Modules::InvalidTokenError
+    end
   end
 end

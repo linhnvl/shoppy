@@ -1,4 +1,4 @@
-module SessionsControllerHelper
+module ValidJsonHelper
   def valid_json? json
     JSON.parse json
     true

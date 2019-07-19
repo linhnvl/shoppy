@@ -15,6 +15,7 @@ jobs:
           DATABASE_PASSWORD: ''
           DATABASE_PORT: 3306
           DATABASE_NAME: 'circle_test'
+          DATABASE_NAME_TEST: 'circle_database_test'
       - image: circleci/mysql:5.7.26
 
       # Specify service dependencies here if necessary

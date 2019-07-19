@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe OrderDetail, type: :model do
-  subject{create :order_detail}
+  subject{build :order_detail}
 
   context :associations do
     it_behaves_like :belong_to, :order

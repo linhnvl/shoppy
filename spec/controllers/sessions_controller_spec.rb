@@ -1,8 +1,8 @@
 require "rails_helper"
-require "helpers/sessions_controller_helper.rb"
+require "helpers/valid_json_helper.rb"
 
-RSpec.describe SessionsController, type: :controller do
-  include SessionsControllerHelper
+RSpec.describe Api::SessionsController, type: :controller do
+  include ValidJsonHelper
 
   context "when login success" do
     let(:password){"Abcd1234"}
@@ -12,6 +12,7 @@ RSpec.describe SessionsController, type: :controller do
     it "has 200 status code" do
       expect(subject.status).to eq(200)
     end
+
     it "has responds user data as json" do
       expect(valid_json? subject.body).to be true
     end

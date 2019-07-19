@@ -12,6 +12,6 @@ namespace :user do
       name: "Luat",
       email: "luat@gmail.com",
       password: "Abcd1234"
-    ) 
+    )
   end
 end

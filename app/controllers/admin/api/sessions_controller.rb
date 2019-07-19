@@ -1,4 +1,4 @@
-class Admin::SessionsController < ApplicationController
+class Admin::Api::SessionsController < ApplicationController
   before_action :load_admin, only: :create
 
   def create

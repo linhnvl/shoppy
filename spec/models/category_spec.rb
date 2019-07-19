@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Category, type: :model do
-  subject{create :category}
+  subject{build :category}
 
   context :associations do
     it_behaves_like :have_many, :category_products

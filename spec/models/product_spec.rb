@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Product, type: :model do
-  subject{create :product}
+  subject{build :product}
 
   context :associations do
     it_behaves_like :have_many, :order_details
