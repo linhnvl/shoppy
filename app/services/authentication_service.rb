@@ -1,5 +1,5 @@
 class AuthenticationService < ApplicationService
-  def initialize authenticable, password, remember_me
+  def initialize authenticable, password, remember_me = false
     @authenticable = authenticable
     @password = password
     @remember_me = remember_me

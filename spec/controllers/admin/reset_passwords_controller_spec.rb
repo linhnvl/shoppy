@@ -2,12 +2,32 @@ require "rails_helper"
 require "helpers/valid_json_helper.rb"
 require "helpers/create_token_helper.rb"
 
-RSpec.describe Admin::Api::ResetPasswordsController, type: :controller do
+RSpec.describe Api::Admin::ResetPasswordsController, type: :controller do
   include ValidJsonHelper
   include CreateTokenHelper
 
+  let(:password){ "Abcd1234" }
+  let(:admin){ create :admin, password: password, password_confirmation: password }
+  let(:headers){ {Authorization: JsonWebToken.encode({user_id: admin.id}, 2.hours.from_now)} }
+  context "when success" do
+    let(:new_password){ "Abcd11111" }
+    it "has 200 status code" do
+      request.headers.merge! headers
+      put :update, params: {password: new_password}
+      expect(response.status).to eq(200)
+    end
+  end
+
+  context "when failed" do
+    let(:new_password){ "A" }
+    it "has 401 status code" do
+      request.headers.merge! headers
+      put :update, params: {password: new_password}
+      expect(response.status).to eq(422)
+    end
+  end
+
   context "when token is valid" do
-    let(:admin){create :admin}
     subject{get :edit, params: {"id": admin.id, "token": create_valid_token(admin.id)}}
 
     it "has 200 status code" do
@@ -20,7 +40,6 @@ RSpec.describe Admin::Api::ResetPasswordsController, type: :controller do
   end
 
   context "when token is invalid" do
-    let(:admin){create :admin}
     subject{get :edit, params: {"id": admin.id, "token": create_invalid_token(admin.id)}}
 
     it "has 401 status code" do

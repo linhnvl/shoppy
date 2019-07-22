@@ -1,4 +1,4 @@
-class Admin::Api::ForgotPasswordsController < ApplicationController
+class Api::Admin::ForgotPasswordsController < ApplicationController
   before_action :load_admin, only: :create
 
   def create
@@ -8,6 +8,6 @@ class Admin::Api::ForgotPasswordsController < ApplicationController
 
   private
   def load_admin
-    @admin = Admin.find_by! email: params[:email]
+    @admin = ::Admin.find_by! email: params[:email]
   end
 end
