@@ -2,7 +2,8 @@ class Api::Admin::ForgotPasswordsController < ApplicationController
   before_action :load_admin, only: :create
 
   def create
-    message = ForgotPasswordsService.call @admin
+    domain = params[:domain]
+    message = ForgotPasswordsService.call @admin, domain
     render json: message
   end
 

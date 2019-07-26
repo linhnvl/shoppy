@@ -5,8 +5,9 @@ RSpec.describe Api::Admin::ForgotPasswordsController, type: :controller do
   include ValidJsonHelper
   context "when send email success" do
     let(:password){ "Abcd1234" }
+    let(:domain){"localhost:8080"}
     let(:admin){create :admin, password: password, password_confirmation: password}
-    subject{post :create, params: {email: admin.email}}
+    subject{post :create, params: {email: admin.email, domain: domain}}
 
     it "sends an email" do
       expect{subject}.to change{ActionMailer::Base.deliveries.size}.by(1)

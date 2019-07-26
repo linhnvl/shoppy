@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :forgot_passwords, only: :create
       resource :reset_passwords, only: [:edit, :update]
     end
-    
+
     resources :sessions, only: :create
     resources :forgot_passwords, only: :create
     resource :reset_passwords, only: [:edit, :update]
