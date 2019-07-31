@@ -7,7 +7,7 @@ class Api::Admin::ResetPasswordsController < ApplicationController
   end
 
   def update
-    data = ResetPasswordService.call @admin, params[:password]
+    data = ResetPasswordService.call! @admin, params[:password]
     render json: data
   end
 

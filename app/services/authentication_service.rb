@@ -5,7 +5,7 @@ class AuthenticationService < ApplicationService
     @remember_me = remember_me
   end
 
-  def call
+  def call!
     raise Modules::AuthenticationError unless @authenticable&.authenticate @password
 
     exp = Settings.json_web_token.short_expires_in.second.from_now

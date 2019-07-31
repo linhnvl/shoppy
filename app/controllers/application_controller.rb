@@ -4,12 +4,16 @@ class ApplicationController < ActionController::API
 
   before_action :set_locale
 
-  rescue_from ActiveRecord::RecordNotFound do
-    render json: {message: I18n.t(".error_message.record_not_found")}, status: :not_found
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render json: {message: I18n.t(".error_message.record_not_found", record: exception.model)}, status: :not_found
   end
 
   rescue_from ActiveRecord::RecordInvalid do |exception|
     render json: {message: exception.message}, status: :unprocessable_entity
+  end
+
+  rescue_from ActiveRecord::RecordNotDestroyed do |exception|
+    render json: {message: exception.message}, status: :internal_server_error
   end
 
   def set_locale

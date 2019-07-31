@@ -4,8 +4,8 @@ class ResetPasswordService < ApplicationService
     @password = password
   end
 
-  def call
+  def call!
     @authenticable.update! password: @password
-    AuthenticationService.call @authenticable, @password
+    AuthenticationService.call! @authenticable, @password
   end
 end

@@ -4,3 +4,5 @@ json_web_token:
   expires_in: <%= 14.days %>
   short_expires_in: <%= 24.hours %>
   reset_password_exp: <%= 6.hours %>
+admins:
+  per_page: 5
