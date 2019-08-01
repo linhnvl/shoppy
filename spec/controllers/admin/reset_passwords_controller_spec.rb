@@ -11,24 +11,30 @@ RSpec.describe Api::Admin::ResetPasswordsController, type: :controller do
   let(:headers){ {Authorization: JsonWebToken.encode({user_id: admin.id}, 2.hours.from_now)} }
   context "when success" do
     let(:new_password){ "Abcd11111" }
-    it "has 200 status code" do
+    before(:each) do
       request.headers.merge! headers
       put :update, params: {password: new_password}
+    end
+
+    it "has 200 status code" do
       expect(response.status).to eq(200)
     end
   end
 
   context "when failed" do
     let(:new_password){ "A" }
-    it "has 401 status code" do
+    before(:each) do
       request.headers.merge! headers
       put :update, params: {password: new_password}
+    end
+
+    it "has 401 status code" do
       expect(response.status).to eq(422)
     end
   end
 
   context "when token is valid" do
-    subject{get :edit, params: {"id": admin.id, "token": create_valid_token(admin.id)}}
+    subject{get :edit, params: {id: admin.id, token: create_valid_token(admin.id)}}
 
     it "has 200 status code" do
       expect(subject.status).to eq(200)
@@ -40,7 +46,7 @@ RSpec.describe Api::Admin::ResetPasswordsController, type: :controller do
   end
 
   context "when token is invalid" do
-    subject{get :edit, params: {"id": admin.id, "token": create_invalid_token(admin.id)}}
+    subject{get :edit, params: {id: admin.id, token: create_invalid_token(admin.id)}}
 
     it "has 401 status code" do
       expect(subject.status).to eq(401)

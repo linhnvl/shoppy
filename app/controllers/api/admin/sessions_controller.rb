@@ -2,7 +2,7 @@ class Api::Admin::SessionsController < ApplicationController
   before_action :load_admin, only: :create
 
   def create
-    data = AuthenticationService.call @admin, params[:password], params[:remember_me]
+    data = AuthenticationService.call! @admin, params[:password], params[:remember_me]
     render json: data
   end
 

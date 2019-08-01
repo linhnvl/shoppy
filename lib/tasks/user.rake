@@ -7,11 +7,20 @@ namespace :user do
       password: "Abcd1234",
       role: 0
     )
-    
+
     User.create(
       name: "Luat",
       email: "luat@gmail.com",
       password: "Abcd1234"
     )
+
+    10.times do |n|
+      Admin.create!(
+        name: "Admin #{n+1}",
+        email: "admin#{n+1}@gmail.com",
+        password: "Abcd1234",
+        role: rand(0..1)
+      )
+    end
   end
 end

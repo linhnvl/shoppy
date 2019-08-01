@@ -3,7 +3,7 @@ class Api::Admin::ForgotPasswordsController < ApplicationController
 
   def create
     domain = params[:domain]
-    message = ForgotPasswordsService.call @admin, domain
+    message = ForgotPasswordsService.call! @admin, domain
     render json: message
   end
 

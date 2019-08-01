@@ -4,7 +4,7 @@ class ForgotPasswordsService < ApplicationService
     @domain = domain
   end
 
-  def call
+  def call!
     exp = Settings.json_web_token.reset_password_exp.second.from_now
     token = JsonWebToken.encode({user_id: @authenticable.id}, exp)
     AuthenticableMailer.reset_password(@authenticable, token, @domain).deliver_now

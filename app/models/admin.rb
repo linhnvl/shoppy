@@ -12,8 +12,10 @@
 #
 
 class Admin < ApplicationRecord
-  has_secure_password
   enum role: {system_admin: 0, shop_admin: 1}
+
+  acts_as_paranoid
+  has_secure_password
 
   validates :name, presence: true
   validates :email, presence: true, format: {with: Settings.VALID_EMAIL_REGEX}, uniqueness: true
