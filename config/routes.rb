@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :sessions, only: :create
     resources :forgot_passwords, only: :create
     resource :reset_passwords, only: %i(edit update)
-    resources :admins, only: %i(index destroy)
+    resources :admins, only: %i(create index destroy)
   end
 end

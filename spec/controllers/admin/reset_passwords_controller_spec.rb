@@ -28,7 +28,7 @@ RSpec.describe Api::Admin::ResetPasswordsController, type: :controller do
       put :update, params: {password: new_password}
     end
 
-    it "has 401 status code" do
+    it "has 422 status code" do
       expect(response.status).to eq(422)
     end
   end
