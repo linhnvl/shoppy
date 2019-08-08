@@ -51,11 +51,6 @@ RSpec.describe Api::AdminsController, type: :controller do
     it "has responds admin data as json" do
       expect(valid_json? subject.body).to be true
     end
-
-    it "has responds admin data pagination" do
-      data = JSON.parse subject.body
-      expect(data.size).to eq Settings.admins.per_page
-    end
   end
 
   context "admin data responds" do

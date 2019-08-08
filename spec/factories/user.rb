@@ -4,6 +4,9 @@ FactoryBot.define do
     email{Faker::Internet.email}
     password{"Abcd1234"}
     address{Faker::Address.city}
-    phone_number{Faker::PhoneNumber.phone_number}
+    phoneNumber{Faker::PhoneNumber.phone_number}
+    city{Faker::Address.city}
+    country{Faker::Address.country}
+    postalCode{Faker::Address.postcode}
   end
 end

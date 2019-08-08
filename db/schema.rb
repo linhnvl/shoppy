@@ -93,8 +93,12 @@ ActiveRecord::Schema.define(version: 2019_07_29_041657) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
-    t.string "phone_number"
+    t.string "phoneNumber"
     t.string "address"
+    t.string "city"
+    t.string "country"
+    t.string "postalCode"
+    t.string "userName"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

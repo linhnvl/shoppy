@@ -29,12 +29,13 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
+  Rails.application.routes.default_url_options[:host] = ENV["HOST"] 
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  host = ENV["MAIL_HOST"]                  # Local server
-  config.action_mailer.default_url_options = { host: host, protocol: "http" }
+  host = ENV["HOST"]                  # Local server
+  config.action_mailer.default_url_options = { host: ENV["MAIL_HOST"], protocol: "http" }
   config.action_mailer.smtp_settings = { address: ENV["MAIL_ADDRESS"], port: ENV["MAIL_SMTP_PORT"] }
 
   config.action_mailer.perform_caching = false

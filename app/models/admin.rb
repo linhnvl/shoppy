@@ -9,14 +9,15 @@
 #  password_digest :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#
+#  deleted_at      :datetime
 
 class Admin < ApplicationRecord
+  attr_accessor :skip_password_validation
+
   enum role: {system_admin: 0, shop_admin: 1}
 
   acts_as_paranoid
-  has_secure_password validations: false
-  attr_accessor :skip_password_validation
+  has_secure_password
 
   validates :name, presence: true
   validates :email, presence: true, format: {with: Settings.VALID_EMAIL_REGEX}, uniqueness: true
