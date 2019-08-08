@@ -8,7 +8,6 @@ RSpec.describe Admin, type: :model do
 
     it_behaves_like :presence_of, :name
     it_behaves_like :presence_of, :email
-    it_behaves_like :presence_of, :password_digest
     it_behaves_like :presence_of, :role
 
     it_behaves_like :allow_value, Faker::Internet.email, :email
