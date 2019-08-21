@@ -8,4 +8,8 @@ module CreateTokenHelper
     exp = 0
     JsonWebToken.encode({user_id: id}, exp)
   end
+
+  def authorize_token id
+    request.headers.merge! Authorization: create_valid_token(id)
+  end
 end

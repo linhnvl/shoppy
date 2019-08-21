@@ -13,13 +13,13 @@ class Api::AdminsController < ApplicationController
   end
 
   def index
-    @admin = ::Admin.order_desc.paginate page: params[:page], per_page: Settings.admins.per_page
+    @admin = ::Admin.order_desc
     render json: @admin
   end
 
   def destroy
     @admin.destroy!
-    render json: {message: I18n.t(".admins.destroy_success")}
+    render json: {message: I18n.t(".admins.destroy_success", adminName: @admin.name)}
   end
 
   private

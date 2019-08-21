@@ -9,9 +9,14 @@ namespace :user do
     )
 
     User.create(
-      name: "Luat",
+      name: "Luat Hoang",
       email: "luat@gmail.com",
-      password: "Abcd1234"
+      password: "Abcd1234",
+      phoneNumber: Faker::PhoneNumber.phone_number,
+      address: Faker::Address.street_address,
+      city: Faker::Address.city,
+      country: Faker::Address.country,
+      postalCode: Faker::Address.postcode
     )
 
     10.times do |n|

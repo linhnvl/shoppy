@@ -7,4 +7,8 @@ en:
   forgot_password_controller: 
     send_email_success: "We sent a password reset email to %{email}. If you do not receive the email after a while, please re-enter here"
   admins: 
-    destroy_success: "Admin deleted"
+    destroy_success: "%{adminName} deleted"
+  validate_image: 
+    content_type: "must be a .png, .jpg or .jpeg file"
+    size: "size must less than 5MB"
+    invalid: "Image is invalid"
