@@ -16,6 +16,10 @@ class ApplicationController < ActionController::API
     render json: {message: exception.message}, status: :internal_server_error
   end
 
+  rescue_from ActiveSupport::MessageVerifier::InvalidSignature do |exception|
+    render json: {message: exception.message}, status: :unauthorized
+  end
+
   def set_locale
     locale = extract_locale_from_header
 

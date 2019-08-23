@@ -12,3 +12,5 @@ en:
     content_type: "must be a .png, .jpg or .jpeg file"
     size: "size must less than 5MB"
     invalid: "Image is invalid"
+  products:
+    product_created: "Product created"
