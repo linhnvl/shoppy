@@ -8,8 +8,11 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    user = UpdateUserService.call! @user, user_params, params[:image]
-    render json: {user: user}
+    @user.skip_password_validation = true
+    ActiveRecord::Base.transaction do
+      @user.update! user_params
+    end
+    render json: {user: @user}
   end
 
   private
