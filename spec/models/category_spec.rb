@@ -13,6 +13,5 @@ RSpec.describe Category, type: :model do
     it{is_expected.to be_valid}
 
     it_behaves_like :presence_of, :name
-    it_behaves_like :presence_of, :parent_id
   end
 end

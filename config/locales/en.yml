@@ -14,3 +14,4 @@ en:
     invalid: "Image is invalid"
   products:
     product_created: "Product created"
+    product_updated: "Product updated"    
