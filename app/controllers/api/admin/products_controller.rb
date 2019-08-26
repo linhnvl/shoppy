@@ -1,5 +1,5 @@
 class Api::Admin::ProductsController < ApplicationController
-  before_action :authorize_request, only: %i(create edit update)
+  before_action :authorize_request, only: %i(create index edit update)
   before_action :load_product, only: %i(edit update)
 
   def create
@@ -7,6 +7,11 @@ class Api::Admin::ProductsController < ApplicationController
       @product = Product.create! product_params
     end
     render json: {message: I18n.t(".products.product_created")}
+  end
+
+  def index
+    render_list Product.includes(:categories, images_attachments: :blob), ProductSerializer, page: params[:page],
+      per_page: params[:per_page]
   end
 
   def edit

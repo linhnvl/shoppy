@@ -86,7 +86,7 @@ RSpec.describe Api::Admin::ProductsController, type: :controller do
     end
   end
 
-  context "when update user failure" do
+  context "when update product failure" do
     subject do
       patch :update, params: {id: product.id, name: "Jean", price: "", quantity: 10, information: "Lorem Ipsum"}
     end
@@ -105,6 +105,22 @@ RSpec.describe Api::Admin::ProductsController, type: :controller do
 
     it "has 401 status code" do
       expect(subject.status).to eq 401
+    end
+  end
+
+  context "when get index success" do
+    let(:products){create_list :product, 2}
+
+    subject{get :index, params: {page: 1, per_page: 5}}
+
+    before{authorize_token(user.id)}
+
+    it "has 200 status code" do
+      expect(subject.status).to eq 200
+    end
+
+    it "has responds data as json" do
+      expect(valid_json? subject.body).to be true
     end
   end
 end
