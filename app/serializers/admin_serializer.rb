@@ -1,4 +1,4 @@
-class AdminSerializer
+class AdminSerializer < ApplicationSerializer
   include FastJsonapi::ObjectSerializer
 
   attributes :name, :email, :role

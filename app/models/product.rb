@@ -16,7 +16,6 @@ class Product < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_many :categories, through: :category_products, dependent: :destroy
   has_many :orders, through: :order_details, dependent: :destroy
-
   has_many_attached :images
 
   validates :name, presence: true
