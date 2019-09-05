@@ -31,6 +31,14 @@ class ApplicationController < ActionController::API
       end
   end
 
+  def render_list relation, serializer, *options
+    options = options.extract_options!
+    relation = relation.paginate(options)
+    data = serializer.new(relation).serializable_hash
+    data[:total] = relation.total_entries
+    render json: data
+  end
+
   private
 
   def locale_valid? locale

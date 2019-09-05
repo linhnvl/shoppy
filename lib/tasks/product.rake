@@ -1,7 +1,7 @@
 namespace :product do
   desc "Seed Product"
   task create: :environment do
-    10.times do |n|
+    25.times do |n|
       product = Product.create(
         name: Faker::Commerce.product_name,
         price: Faker::Commerce.price,
