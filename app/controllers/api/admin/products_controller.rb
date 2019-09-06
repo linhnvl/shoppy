@@ -10,8 +10,8 @@ class Api::Admin::ProductsController < ApplicationController
   end
 
   def index
-    render_list Product.includes(:categories, images_attachments: :blob), ProductSerializer, page: params[:page],
-      per_page: params[:per_page]
+    render_list Product.search_by_name(params[:keyword].to_s).includes(:categories, images_attachments: :blob),
+                ProductSerializer, page: params[:page], per_page: params[:per_page]
   end
 
   def edit

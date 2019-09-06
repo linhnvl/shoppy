@@ -24,4 +24,6 @@ class Product < ApplicationRecord
   validates :quantity, presence: true, numericality: {greater_than_or_equal_to: 0}
   validates :images, size: {less_than: 5.megabytes, message: I18n.t(".validate_image.size")},
     content_type: {in: Settings.validate_image.content_type, message: I18n.t(".validate_image.content_type")}
+
+  scope :search_by_name, ->(keyword){where "lower(name) LIKE ?", "%#{keyword.downcase}%"}
 end

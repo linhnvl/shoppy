@@ -123,4 +123,25 @@ RSpec.describe Api::Admin::ProductsController, type: :controller do
       expect(valid_json? subject.body).to be true
     end
   end
+
+  context "when search product success" do
+    let!(:products){create_list :product, 5, name: "Copper Clock"}
+
+    subject{get :index, params: {keyword: "Clock"}}
+
+    before{authorize_token(user.id)}
+
+    it "has 200 status code" do
+      expect(subject.status).to eq 200
+    end
+
+    it "has responds data as json" do
+      expect(valid_json? subject.body).to be true
+    end
+
+    it "has responds 2 results " do
+      data = JSON.parse(subject.body).symbolize_keys
+      expect(data[:total]).to eq 5
+    end
+  end
 end
