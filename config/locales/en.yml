@@ -13,5 +13,6 @@ en:
     size: "size must less than 5MB"
     invalid: "Image is invalid"
   products:
-    product_created: "Product created"
-    product_updated: "Product updated"    
+    product_created: "Product has been created"
+    product_updated: "Product has been updated"
+    product_deleted: "Product has been deleted"

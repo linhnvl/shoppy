@@ -5,7 +5,7 @@ namespace :product do
       product = Product.create(
         name: Faker::Commerce.product_name,
         price: Faker::Commerce.price,
-        information: Faker::Lorem.paragraph,
+        information: Faker::Lorem.paragraph(70),
         quantity: rand(0..1000),
         images: [],
       )
