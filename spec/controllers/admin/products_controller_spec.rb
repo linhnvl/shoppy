@@ -144,4 +144,18 @@ RSpec.describe Api::Admin::ProductsController, type: :controller do
       expect(data[:total]).to eq 5
     end
   end
+
+  context "when delete product success" do
+    subject{delete :destroy, params: {id: product.id}}
+
+    before{authorize_token(user.id)}
+
+    it "has 200 status code" do
+      expect(subject.status).to eq 200
+    end
+
+    it "has responds data as json" do
+      expect(valid_json? subject.body).to be true
+    end
+  end
 end

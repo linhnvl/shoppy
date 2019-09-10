@@ -1,6 +1,6 @@
 class Api::Admin::ProductsController < ApplicationController
-  before_action :authorize_request, only: %i(create index edit update)
-  before_action :load_product, only: %i(edit update)
+  before_action :authorize_request, only: %i(create index edit update destroy)
+  before_action :load_product, only: %i(edit update destroy)
 
   def create
     ActiveRecord::Base.transaction do
@@ -27,6 +27,11 @@ class Api::Admin::ProductsController < ApplicationController
       @product.update! product_params
     end
     render json: {message: I18n.t(".products.product_updated")}, status: :ok
+  end
+
+  def destroy
+    @product.destroy!
+    render json: {message: I18n.t(".products.product_deleted")}
   end
 
   private

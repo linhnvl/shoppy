@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :sessions, only: :create
       resources :forgot_passwords, only: :create
       resource :reset_passwords, only: %i(edit update)
-      resources :products, only: %i(create index edit update)
+      resources :products, only: %i(create index edit update destroy)
       resources :categories, only: :index
     end
 
