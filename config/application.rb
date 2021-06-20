@@ -12,6 +12,7 @@ require "action_cable/engine"
 require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load
 
 module Shoppy
   class Application < Rails::Application

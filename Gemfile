@@ -7,7 +7,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "config"
 gem "fast_jsonapi"
-gem "figaro"
+# gem "figaro"
 gem "mysql2"
 gem "paranoia"
 gem "puma", "~> 3.11"
@@ -17,6 +17,7 @@ gem "rails-i18n"
 gem "rubocop", "~> 0.71.0"
 gem "jwt"
 gem "will_paginate"
+gem "dotenv-rails"
 
 group :development, :test do
   gem "annotate"
@@ -26,7 +27,8 @@ group :development, :test do
   gem "capistrano3-puma"
   gem "capistrano-rails", require: false
   gem "capistrano-bundler", require: false
-  gem "capistrano-rvm"
+  gem "capistrano-rbenv"
+  gem "capistrano-unicorn-nginx"
 end
 
 group :test do
