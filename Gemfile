@@ -12,7 +12,7 @@ gem "mysql2"
 gem "paranoia"
 gem "puma", "~> 3.11"
 gem "rack-cors"
-gem "rails", "~> 5.2.3"
+gem "rails", "~> 5.2.6"
 gem "rails-i18n"
 gem "rubocop", "~> 0.71.0"
 gem "jwt"
@@ -22,6 +22,11 @@ group :development, :test do
   gem "annotate"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "faker"
+  gem "capistrano"
+  gem "capistrano3-puma"
+  gem "capistrano-rails", require: false
+  gem "capistrano-bundler", require: false
+  gem "capistrano-rvm"
 end
 
 group :test do
