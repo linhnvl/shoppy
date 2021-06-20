@@ -42,9 +42,8 @@
 # Global options
 # --------------
 #  set :ssh_options, {
-#    keys: %w(/home/user_name/.ssh/id_rsa),
+#    keys: %w(~/.ssh/id_rsa.pem),
 #    forward_agent: false,
-#    auth_methods: %w(password)
 #  }
 #
 # The server-based syntax can be used to override options:
@@ -59,3 +58,14 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+# set :user, 'linh'
+# set :server_name, '45.32.106.63'
+# set :branch, 'master'
+# set :rails_env, 'production'
+# set :bundle_flags, "--no-deployment"
+
+# role :app, ["#{fetch(deploy_user)}@#{fetch(server_name)}"]
+# role :web, ["#{fetch(deploy_user)}@#{fetch(server_name)}"]
+# role :db,  ["#{fetch(deploy_user)}@#{fetch(server_name)}"]
+
+# server fetch(server_name), user: fetch(deploy_user), roles: %w{web app db}, primary: true
